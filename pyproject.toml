@@ -1,40 +1,38 @@
-[tool.poetry]
+[project]
 name = "ailerons-tracker-backend"
 version = "0.1.0"
 description = ""
-authors = ["LouisCoutel <louiscoutel75@gmail.com>"]
+authors = [{ name = "LouisCoutel", email = "louiscoutel75@gmail.com" }]
+requires-python = "~=3.10"
 readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.10"
-cloudinary = "^1.40.0"
-flask = "^3.0.3"
-flask-cors = "^4.0.1"
-flask-htmx = "^0.3.2"
-flask-login = "^0.6.3"
-flask-sqlalchemy = "^3.1.1"
-flask-wtf = "^1.2.1"
-geojson = "^3.1.0"
-gunicorn = "^22.0.0"
-jinja2 = "^3.1.4"
-jinja-partials = "^0.2.1"
-numpy = "^2.0.0"
-pylint = "^3.2.5"
-python-dotenv = "^1.0.1"
-sqlalchemy = "^2.0.31"
-supabase = "^2.5.1"
-wtforms = "^3.1.2"
-pandas = "^2.2.2"
-pytest = "^8.2.2"
-psycopg2 = "^2.9.9"
-flask-migrate = "^4.0.7"
-playwright = "^1.45.0"
-pytest-playwright = "^0.5.1"
-
+dependencies = [
+    "cloudinary>=1.40.0,<2",
+    "flask>=3.0.3,<4",
+    "flask-cors>=4.0.1,<5",
+    "flask-htmx>=0.3.2,<0.4",
+    "flask-login>=0.6.3,<0.7",
+    "flask-sqlalchemy>=3.1.1,<4",
+    "flask-wtf>=1.2.1,<2",
+    "geojson>=3.1.0,<4",
+    "gunicorn>=22.0.0,<23",
+    "jinja2>=3.1.4,<4",
+    "jinja-partials>=0.2.1,<0.3",
+    "numpy>=2.0.0,<3",
+    "pylint>=3.2.5,<4",
+    "python-dotenv>=1.0.1,<2",
+    "sqlalchemy>=2.0.31,<3",
+    "wtforms>=3.1.2,<4",
+    "pandas>=2.2.2,<3",
+    "pytest>=8.2.2,<9",
+    "psycopg2>=2.9.9,<3",
+    "flask-migrate>=4.0.7,<5",
+    "playwright>=1.45.0,<2",
+    "pytest-playwright>=0.5.1,<0.6",
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
@@ -61,6 +59,7 @@ recursive = true
 # When enabled, pylint would attempt to guess common misconfiguration and emit
 # user-friendly hints instead of false-positive error messages.
 suggestion-mode = true
+
 [tool.pylint.basic]
 # Naming style matching correct argument names.
 argument-naming-style = "snake_case"
@@ -230,9 +229,6 @@ timeout-methods = ["requests.api.delete", "requests.api.get", "requests.api.head
 # List of note tags to take in consideration, separated by a comma.
 notes = ["FIXME", "XXX", "TODO"]
 
-# Regular expression of note tags to take in consideration.
-# notes-rgx =
-
 [tool.pylint.refactoring]
 # Maximum number of nested blocks for function / method body
 max-nested-blocks = 5
@@ -339,9 +335,6 @@ missing-member-max-choices = 1
 
 # Regex pattern to define which classes are considered mixins.
 mixin-class-rgx = ".*[Mm]ixin"
-
-# List of decorators that change the signature of a decorated function.
-# signature-mutators =
 
 [tool.pylint.variables]
 # List of additional names supposed to be defined in builtins. Remember that you
