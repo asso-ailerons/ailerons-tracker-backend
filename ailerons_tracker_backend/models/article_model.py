@@ -1,5 +1,4 @@
 """ Article Model """
-from ailerons_tracker_backend.clients.supabase_client import supabase
 
 
 class Article:

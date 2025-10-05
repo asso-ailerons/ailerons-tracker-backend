@@ -1,6 +1,5 @@
 """ Individual data upload blueprint """
 
-import postgrest
 import flask_login
 from wtforms.validators import ValidationError
 from jinja_partials import render_partial
