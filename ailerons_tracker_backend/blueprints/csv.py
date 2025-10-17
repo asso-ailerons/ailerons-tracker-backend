@@ -100,9 +100,6 @@ def upload():
         current_app.logger.error(e.message)
         return e.message, 500
 
-    except postgrest.exceptions.APIError as e:
-        current_app.logger.error(e.message)
-        return e.message, 304
 
 
 @csv.get("/upload")
