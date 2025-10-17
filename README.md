@@ -90,6 +90,14 @@ Voici l'arborescence du projet :
 - **tests** : Dossier principal pour les tests unitaires et d'intégration.
   - **resources** : Contient les ressources utilisées dans les tests (fichiers de test).
 
+### Execution et variables d'environnement
+
+Pour lancer l'application ou une suite de test, on utilise la commande `uv run --env-file [fichier d'environnement] [script]`
+Il est nécessaire de définir quel fichier d'environnement doit être chargé, selon qu'on se trouve dans un environnement de test ou en production.
+
+Pour lancer le serveur de dev en mode débug: `uv run --env-file .env.staging flask run --debug`.
+Pour lancer une suite de tests: `uv run --env-file .env.staging pytest/mon_test.py`.
+
 ### Configuration et Lancement de l'Application
 
 La configuration de l'application et sa création se font dans le fichier `__init__.py` du module principal.
@@ -335,10 +343,9 @@ L'authentification des utilisateurs est gérée grâce à l'extension Flask-Logi
 
 1. **Chargement de la Variable d'Environnement**
 
-   Chargez la variable d'environnement contenant le mot de passe administrateur :
+   Le mot de passe est conservé dans une variable d'environnement
 
    ```python
-   load_dotenv()
 
    admin_pword = os.getenv('ADMIN_PWD')
 
