@@ -95,10 +95,6 @@ def edit():
         current_app.logger.error(e)
         return e, 400
 
-    except postgrest.exceptions.APIError as e:
-        current_app.logger.error(e.message)
-        return e.message, 304
-
     except MissingParamError as e:
         current_app.logger.error(e)
         return e, 304
@@ -154,10 +150,6 @@ def create():
     except ValidationError as e:
         current_app.logger.error(e)
         return e, 400
-
-    except postgrest.exceptions.APIError as e:
-        current_app.logger.error(e.message)
-        return e.message, 304
 
 
 @individual.get("/create")
