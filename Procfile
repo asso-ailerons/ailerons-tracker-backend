@@ -1,1 +1,0 @@
-web: gunicorn csv_upload_backend.server:app --bind=0.0.0.0:8000
