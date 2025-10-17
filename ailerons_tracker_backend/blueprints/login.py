@@ -1,6 +1,5 @@
-""" Login blueprint """
+"""Login blueprint"""
 
-from dotenv import load_dotenv
 import flask_login
 from flask_htmx import HTMX, make_response
 from jinja2 import TemplateNotFound
@@ -13,15 +12,12 @@ from ailerons_tracker_backend.models.user_model import User
 from ailerons_tracker_backend.forms.login_form import LoginForm
 
 
-load_dotenv()
-
-login = Blueprint('login', __name__,
-                  template_folder='templates', url_prefix='/login')
+login = Blueprint("login", __name__, template_folder="templates", url_prefix="/login")
 
 
-@login.post('/')
+@login.post("/")
 def connect():
-    """ Connect to the app """
+    """Connect to the app"""
 
     try:
         form = LoginForm()
@@ -31,11 +27,13 @@ def connect():
             flask_login.login_user(User())
 
             return make_response(
-                render_partial(
-                    "dashboard/dashboard.jinja"
-                ), push_url=url_for("portal.dashboard.show")), 200
+                render_partial("dashboard/dashboard.jinja"),
+                push_url=url_for("portal.dashboard.show"),
+            ), 200
 
-        return render_partial("login/login_section.jinja", form=form, error_message=True), 401
+        return render_partial(
+            "login/login_section.jinja", form=form, error_message=True
+        ), 401
 
     except TemplateNotFound as e:
         current_app.logger.error(e)
@@ -46,20 +44,20 @@ def connect():
         return e, 500
 
 
-@login.get('/')
+@login.get("/")
 def show():
-    """ Retrieve the login section HTML template """
+    """Retrieve the login section HTML template"""
 
     htmx = HTMX(current_app)
     form = LoginForm()
 
     try:
         if htmx:
-            return render_partial(
-                'login/login_section.jinja', form=form), 200
+            return render_partial("login/login_section.jinja", form=form), 200
 
         return render_template(
-            'base_layout.jinja', view=url_for('portal.login.show'), form=form), 200
+            "base_layout.jinja", view=url_for("portal.login.show"), form=form
+        ), 200
 
     except TemplateNotFound as e:
         current_app.logger.error(e)

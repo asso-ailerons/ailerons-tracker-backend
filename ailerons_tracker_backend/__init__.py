@@ -5,7 +5,6 @@ __version__ = "0.7"
 import os
 from flask_htmx import HTMX, make_response
 from flask_login import FlaskLoginClient
-from dotenv import load_dotenv
 from flask_wtf import CSRFProtect
 from jinja_partials import render_partial, register_extensions
 import flask_login
@@ -16,8 +15,6 @@ from ailerons_tracker_backend.blueprints.portal import portal
 from ailerons_tracker_backend.models.user_model import User
 from ailerons_tracker_backend.db import db, migrate
 
-load_dotenv()
-
 
 def create_app(test_config=None):
     """Create an instance of the app"""
@@ -27,7 +24,7 @@ def create_app(test_config=None):
     app.config.from_mapping(
         SECRET_KEY=os.getenv("APP_SECRET_KEY"),
         # URI can be found in Supabase dashboard, pwd can be reset there as well
-        SQLALCHEMY_DATABASE_URI=f"postgresql://postgres.alvgbclmfilztzedgbeo:{os.getenv('DB_PWD')}@aws-1-eu-west-3.pooler.supabase.com:6543/postgres",
+        SQLALCHEMY_DATABASE_URI=f"postgresql://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PWD')}@{os.getenv('DB_HOST')}/{os.getenv('DB_NAME')}",
         SERVER_NAME="127.0.0.1:5000",
         APPLICATION_ROOT="/",
     )

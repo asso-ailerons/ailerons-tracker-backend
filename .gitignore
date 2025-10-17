@@ -1,5 +1,7 @@
 .venv/
+.env.prod
 .env
+.env.staging
 aileronsVenv/
 venv/
 pycache/
