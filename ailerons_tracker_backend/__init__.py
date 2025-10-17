@@ -1,4 +1,4 @@
-""" Configuration and factory for the app """
+"""Configuration and factory for the app"""
 
 __version__ = "0.7"
 
@@ -20,25 +20,23 @@ load_dotenv()
 
 
 def create_app(test_config=None):
-    """ Create an instance of the app """
+    """Create an instance of the app"""
 
     app = Flask(__name__, instance_relative_config=True)
 
     app.config.from_mapping(
         SECRET_KEY=os.getenv("APP_SECRET_KEY"),
         # URI can be found in Supabase dashboard, pwd can be reset there as well
-        SQLALCHEMY_DATABASE_URI=f"postgresql://"
-        f"postgres.rddizwstjdinzyzvnuun:{os.getenv('DB_PWD')}"
-        "@aws-0-eu-central-1.pooler.supabase.com:5432/postgres",
-        SERVER_NAME='127.0.0.1:5000',
-        APPLICATION_ROOT='/'
+        SQLALCHEMY_DATABASE_URI=f"postgresql://postgres.alvgbclmfilztzedgbeo:{os.getenv('DB_PWD')}@aws-1-eu-west-3.pooler.supabase.com:6543/postgres",
+        SERVER_NAME="127.0.0.1:5000",
+        APPLICATION_ROOT="/",
     )
     db.init_app(app)
     migrate.init_app(app, db)
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
-        app.config.from_pyfile('config.py', silent=True)
+        app.config.from_pyfile("config.py", silent=True)
 
     else:
         # load the test config if passed in
@@ -79,9 +77,12 @@ def create_app(test_config=None):
         if htmx:
             return make_response(
                 render_partial("login/login_section.jinja", form=form),
-                push_url=url_for("portal.login.show")), 302
+                push_url=url_for("portal.login.show"),
+            ), 302
 
-        return render_template("base_layout.jinja", view=url_for("portal.login.show")), 302
+        return render_template(
+            "base_layout.jinja", view=url_for("portal.login.show")
+        ), 302
 
     app.test_client_class = FlaskLoginClient
 
