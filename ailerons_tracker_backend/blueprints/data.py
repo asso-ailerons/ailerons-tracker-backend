@@ -1,5 +1,5 @@
 from flask import Blueprint
-from sqlalchemy.orm import defer, noload, selectinload
+from sqlalchemy.orm import defer, noload
 
 from ailerons_tracker_backend.db import db
 from ailerons_tracker_backend.models.article_model import Article
@@ -21,7 +21,6 @@ def get_individuals():
     individuals = (
         db.session.execute(
             db.select(Individual).options(
-                selectinload(Individual.context),
                 noload(Individual.records),
                 noload(Individual.line_feature),
                 noload(Individual.csv),
