@@ -53,3 +53,44 @@ def test_articles(app, client):
                 "imageUrl",
             ]:
                 assert k in entry.keys()
+
+
+def test_points(app, client):
+    with app.app_context():
+        response = client.get(
+            url_for("data.get_points"),
+        )
+
+        assert response.status_code == 200
+
+        results = json.loads(response.data)
+        logging.info(results)
+
+        for entry in results:
+            for k in [
+                "longitude",
+                "latitude",
+                "idIndividual",
+                "recordTimestamp",
+                "depth",
+            ]:
+                assert k in entry.keys()
+
+
+def test_geojson(app, client):
+    with app.app_context():
+        response = client.get(
+            url_for("data.get_geojson"),
+        )
+
+        assert response.status_code == 200
+
+        results = json.loads(response.data)
+        logging.info(results)
+
+        for entry in results:
+            for k in [
+                "json",
+                "idIndividual",
+            ]:
+                assert k in entry.keys()

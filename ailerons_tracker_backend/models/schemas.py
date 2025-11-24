@@ -50,11 +50,21 @@ class ContextSchema(CamelCaseAutoSchema):
 class RecordSchema(CamelCaseSchema):
     class Meta:
         model = Record
+        include_relationships = True
+
+    longitude = ma.auto_field()
+    latitude = ma.auto_field()
+    individual_id = ma.auto_field(data_key="idIndividual")
+    record_timestamp = ma.auto_field()
+    depth = ma.auto_field()
 
 
 class LineGeojsonSchema(CamelCaseSchema):
     class Meta:
         model = LineGeojson
+
+    geojson = ma.auto_field("geojson", data_key="json")
+    individual_id = ma.auto_field(data_key="idIndividual")
 
 
 class CsvSchema(CamelCaseSchema):
@@ -63,11 +73,6 @@ class CsvSchema(CamelCaseSchema):
 
 
 class IndividualSchema(CamelCaseSchema):
-    def rename_context():
-        def on_bind_field(self, field_name, field_obj):
-            if field_name == "context":
-                field_obj.data_key = "observationContext"
-
     class Meta:
         model = Individual
         include_relationships = True
