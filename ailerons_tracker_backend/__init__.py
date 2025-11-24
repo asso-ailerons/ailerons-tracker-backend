@@ -89,6 +89,7 @@ def create_app(test_config=None):
 
     # Register a blueprint => blueprint routes are now active
     app.register_blueprint(portal)
+    app.register_blueprint(data)
 
     app.logger.info(app.url_map)
 
