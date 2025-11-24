@@ -1,3 +1,4 @@
+from marshmallow.fields import Float, Integer, String
 from ailerons_tracker_backend.ma import ma
 
 from ailerons_tracker_backend.models.article_model import Article
@@ -26,12 +27,14 @@ class CamelCaseAutoSchema(ma.SQLAlchemyAutoSchema):
         field_obj.data_key = camelcase(field_obj.data_key or field_name)
 
 
-class ArticleSchema(CamelCaseAutoSchema):
+class ArticleSchema(CamelCaseSchema):
     class Meta:
         model = Article
 
-    published = ma.auto_field(load_only=True)
-    archived = ma.auto_field(load_only=True)
+    title = String(required=True)
+    content = String(required=True)
+    publication_date = String(required=True)
+    image_url = String(required=True)
 
 
 class PictureSchema(CamelCaseAutoSchema):
@@ -39,12 +42,13 @@ class PictureSchema(CamelCaseAutoSchema):
         model = Picture
 
 
-class ContextSchema(CamelCaseAutoSchema):
+class ContextSchema(CamelCaseSchema):
     class Meta:
         model = Context
 
-    id = ma.auto_field(load_only=True)
-    date = ma.auto_field(load_only=True)
+    situation = String(required=True)
+    size = Float(required=True)
+    behavior = String(required=True)
 
 
 class RecordSchema(CamelCaseSchema):
@@ -52,18 +56,18 @@ class RecordSchema(CamelCaseSchema):
         model = Record
         include_relationships = True
 
-    longitude = ma.auto_field()
-    latitude = ma.auto_field()
-    individual_id = ma.auto_field(data_key="idIndividual")
-    record_timestamp = ma.auto_field()
-    depth = ma.auto_field()
+    longitude = Float(required=True)
+    latitude = Float(required=True)
+    individual_id = ma.auto_field(data_key="idIndividual", required=True)
+    record_timestamp = String(required=True)
+    depth = Integer()
 
 
 class LineGeojsonSchema(CamelCaseSchema):
     class Meta:
         model = LineGeojson
 
-    geojson = ma.auto_field("geojson", data_key="json")
+    geojson = String(data_key="json")
     individual_id = ma.auto_field(data_key="idIndividual")
 
 
@@ -78,10 +82,10 @@ class IndividualSchema(CamelCaseSchema):
         include_relationships = True
 
     id = ma.auto_field()
-    created_at = ma.auto_field()
-    individual_name = ma.auto_field()
-    sex = ma.auto_field()
-    common_name = ma.auto_field()
-    binomial_name = ma.auto_field()
-    description = ma.auto_field()
+    created_at = String(required=True)
+    individual_name = String(required=True)
+    sex = String(required=True)
+    common_name = String(required=True)
+    binomial_name = String(required=True)
+    description = String(required=True)
     context = ma.Nested(ContextSchema)
