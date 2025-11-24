@@ -28,6 +28,8 @@ dependencies = [
     "flask-migrate>=4.0.7,<5",
     "playwright>=1.45.0,<2",
     "pytest-playwright>=0.5.1,<0.6",
+    "marshmallow-sqlalchemy>=1.4.2",
+    "flask-marshmallow>=1.3.0",
 ]
 
 [build-system]
