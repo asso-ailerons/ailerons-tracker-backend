@@ -7,9 +7,9 @@ from jinja_partials import render_partial
 from flask import current_app, Blueprint, abort, render_template, url_for
 
 # Local modules
-from ailerons_tracker_backend.errors import EnvVarError
-from ailerons_tracker_backend.models.user_model import User
-from ailerons_tracker_backend.forms.login_form import LoginForm
+from errors import EnvVarError
+from models.user_model import User
+from forms.login_form import LoginForm
 
 
 login = Blueprint("login", __name__, template_folder="templates", url_prefix="/login")

@@ -1,12 +1,12 @@
 from flask import Blueprint
 from sqlalchemy.orm import defer, noload
 
-from ailerons_tracker_backend.db import db
-from ailerons_tracker_backend.models.article_model import Article
-from ailerons_tracker_backend.models.feature_models import LineGeojson
-from ailerons_tracker_backend.models.individual_model import Individual
-from ailerons_tracker_backend.models.record_model import Record
-from ailerons_tracker_backend.models.schemas import (
+from db import db
+from models.article_model import Article
+from models.feature_models import LineGeojson
+from models.individual_model import Individual
+from models.record_model import Record
+from models.schemas import (
     ArticleSchema,
     IndividualSchema,
     LineGeojsonSchema,

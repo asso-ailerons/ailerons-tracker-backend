@@ -3,7 +3,7 @@
 import os
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
-from ailerons_tracker_backend.errors import EnvVarError
+from errors import EnvVarError
 
 admin_pword = os.getenv("ADMIN_PWD")
 

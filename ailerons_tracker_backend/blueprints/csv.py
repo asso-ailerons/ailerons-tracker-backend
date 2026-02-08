@@ -10,11 +10,11 @@ from jinja_partials import render_partial
 from pandas import Timedelta, pandas as pd
 
 # Local modules
-from ailerons_tracker_backend.models.individual_model import Individual
-from ailerons_tracker_backend.models.csv_model import Csv
-from ailerons_tracker_backend.db import db
-from ailerons_tracker_backend.generator import generate
-from ailerons_tracker_backend.errors import GeneratorError, MissingParamError
+from models.individual_model import Individual
+from models.csv_model import Csv
+from db import db
+from generator import generate
+from errors import GeneratorError, MissingParamError
 
 
 csv = Blueprint("csv", __name__, template_folder="templates", url_prefix="/csv")
@@ -99,7 +99,6 @@ def upload():
     except GeneratorError as e:
         current_app.logger.error(e.message)
         return e.message, 500
-
 
 
 @csv.get("/upload")

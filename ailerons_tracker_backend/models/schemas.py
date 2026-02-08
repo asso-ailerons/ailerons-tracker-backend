@@ -1,13 +1,13 @@
 from marshmallow.fields import Float, Integer, String
-from ailerons_tracker_backend.ma import ma
+from ma import ma
 
-from ailerons_tracker_backend.models.article_model import Article
-from ailerons_tracker_backend.models.context_model import Context
-from ailerons_tracker_backend.models.csv_model import Csv
-from ailerons_tracker_backend.models.feature_models import LineGeojson
-from ailerons_tracker_backend.models.individual_model import Individual
-from ailerons_tracker_backend.models.picture_model import Picture
-from ailerons_tracker_backend.models.record_model import Record
+from models.article_model import Article
+from models.context_model import Context
+from models.csv_model import Csv
+from models.feature_models import LineGeojson
+from models.individual_model import Individual
+from models.picture_model import Picture
+from models.record_model import Record
 
 
 def camelcase(s):

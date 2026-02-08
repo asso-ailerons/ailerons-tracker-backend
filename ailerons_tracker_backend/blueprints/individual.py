@@ -17,13 +17,13 @@ from werkzeug.datastructures import ImmutableMultiDict, iter_multi_items
 from flask_htmx import HTMX, make_response
 
 # Local modules
-from ailerons_tracker_backend.db import db
-from ailerons_tracker_backend.errors import MissingParamError
-from ailerons_tracker_backend import cloudinary_client
-from ailerons_tracker_backend.models.context_model import Context
-from ailerons_tracker_backend.models.individual_model import Individual
-from ailerons_tracker_backend.forms.individual_forms import ContextForm, IndividualForm
-from ailerons_tracker_backend.models.picture_model import Picture
+from db import db
+from errors import MissingParamError
+import cloudinary_client
+from models.context_model import Context
+from models.individual_model import Individual
+from forms.individual_forms import ContextForm, IndividualForm
+from models.picture_model import Picture
 
 
 individual = Blueprint(

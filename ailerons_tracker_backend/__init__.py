@@ -11,12 +11,12 @@ from flask_login import FlaskLoginClient
 from flask_wtf import CSRFProtect
 from jinja_partials import register_extensions, render_partial
 
-from ailerons_tracker_backend.blueprints.data import data
-from ailerons_tracker_backend.blueprints.portal import portal
-from ailerons_tracker_backend.db import db, migrate
-from ailerons_tracker_backend.forms.login_form import LoginForm
-from ailerons_tracker_backend.models.user_model import User
-from ailerons_tracker_backend.ma import ma
+from blueprints.data import data
+from blueprints.portal import portal
+from db import db, migrate
+from forms.login_form import LoginForm
+from models.user_model import User
+from ma import ma
 
 
 def create_app(test_config=None):

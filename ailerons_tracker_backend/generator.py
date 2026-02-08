@@ -1,12 +1,12 @@
-""" GeoJSON generator """
+"""GeoJSON generator"""
 
 from geojson import FeatureCollection, GeoJSON
-from ailerons_tracker_backend.models.individual_model import Individual
-from ailerons_tracker_backend.models.feature_models import LineGeojson, to_point_feature
+from models.individual_model import Individual
+from models.feature_models import LineGeojson, to_point_feature
 
 
 def generate(individual: Individual, db) -> Individual:
-    """ Generate GeoJSON features"""
+    """Generate GeoJSON features"""
 
     features: list[GeoJSON] = []
 
@@ -21,7 +21,8 @@ def generate(individual: Individual, db) -> Individual:
 
     individual.line_feature = LineGeojson(
         individual_id=individual.id,
-        geojson=LineGeojson.to_line_feature(individual.records, individual))
+        geojson=LineGeojson.to_line_feature(individual.records, individual),
+    )
 
     db.session.add(individual)
     db.session.commit()
