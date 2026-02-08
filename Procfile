@@ -1,1 +1,1 @@
-web: gunicorn 'ailerons-tracker-backend:create_app()'
+web: gunicorn --chdir ailerons-tracker-backend 'ailerons-tracker-backend:create_app()'
