@@ -3,15 +3,21 @@
 from sqlalchemy import Boolean, Identity, Text
 from sqlalchemy.dialects import postgresql
 from sqlalchemy.orm import Mapped
-from ailerons_tracker_backend.db import db
 from sqlalchemy.orm import mapped_column as mc
 
+from ailerons_tracker_backend.db import Base
 
-class Article(db.Model):
+
+class Article(Base):
     """Model for a news article."""
 
+    __tablename__ = "article"
+
     id: Mapped[int] = mc(
-        postgresql.BIGINT, Identity(start=1, always=True), primary_key=True, unique=True
+        postgresql.BIGINT,
+        Identity(start=1, always=True),
+        primary_key=True,
+        unique=True,
     )
     title: Mapped[str] = mc(Text)
     content: Mapped[str] = mc(Text)
