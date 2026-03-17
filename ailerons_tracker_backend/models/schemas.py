@@ -1,6 +1,6 @@
 from marshmallow.fields import Float, Integer, String
-from ailerons_tracker_backend.ma import ma
 
+from ailerons_tracker_backend.ma import ma
 from ailerons_tracker_backend.models.article_model import Article
 from ailerons_tracker_backend.models.context_model import Context
 from ailerons_tracker_backend.models.csv_model import Csv
