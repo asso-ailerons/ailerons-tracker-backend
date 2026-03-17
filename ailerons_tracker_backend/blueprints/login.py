@@ -12,7 +12,9 @@ from ailerons_tracker_backend.models.user_model import User
 from ailerons_tracker_backend.forms.login_form import LoginForm
 
 
-login = Blueprint("login", __name__, template_folder="templates", url_prefix="/login")
+login = Blueprint(
+    "login", __name__, template_folder="templates", url_prefix="/login"
+)
 
 
 @login.post("/")

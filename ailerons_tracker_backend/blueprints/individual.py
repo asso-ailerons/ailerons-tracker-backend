@@ -22,12 +22,18 @@ from ailerons_tracker_backend.errors import MissingParamError
 from ailerons_tracker_backend import cloudinary_client
 from ailerons_tracker_backend.models.context_model import Context
 from ailerons_tracker_backend.models.individual_model import Individual
-from ailerons_tracker_backend.forms.individual_forms import ContextForm, IndividualForm
+from ailerons_tracker_backend.forms.individual_forms import (
+    ContextForm,
+    IndividualForm,
+)
 from ailerons_tracker_backend.models.picture_model import Picture
 
 
 individual = Blueprint(
-    "individual", __name__, template_folder="templates", url_prefix="/individual"
+    "individual",
+    __name__,
+    template_folder="templates",
+    url_prefix="/individual",
 )
 
 
@@ -162,7 +168,9 @@ def show_create():
 
     try:
         if htmx:
-            return render_partial("individual_infos/individual_infos.jinja", form=form)
+            return render_partial(
+                "individual_infos/individual_infos.jinja", form=form
+            )
 
         return render_template(
             "base_layout.jinja", view=url_for("portal.individual.show_create")
@@ -191,7 +199,9 @@ def show_edit():
 
         if htmx:
             return render_partial(
-                "individual_infos/individual_infos_edit.jinja", ind=ind, form=form
+                "individual_infos/individual_infos_edit.jinja",
+                ind=ind,
+                form=form,
             )
 
         return render_template(

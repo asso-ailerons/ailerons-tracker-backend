@@ -26,7 +26,6 @@ def create_app(test_config=None):
 
     app.config.from_mapping(
         SECRET_KEY=os.getenv("APP_SECRET_KEY"),
-        # URI can be found in Supabase dashboard, pwd can be reset there as well
         SQLALCHEMY_DATABASE_URI=f"postgresql://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PWD')}@{os.getenv('DB_HOST')}/{os.getenv('DB_NAME')}",
         SERVER_NAME="127.0.0.1:5000",
         APPLICATION_ROOT="/",
