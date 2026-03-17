@@ -32,6 +32,9 @@ dependencies = [
     "flask-marshmallow>=1.3.0",
 ]
 
+[tool.setuptools.packages.find]
+where = ["."]
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
