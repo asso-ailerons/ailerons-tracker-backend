@@ -13,7 +13,9 @@ from ailerons_tracker_backend.models.schemas import (
     RecordSchema,
 )
 
-data = Blueprint("data", __name__, template_folder="templates", url_prefix="/data")
+data = Blueprint(
+    "data", __name__, template_folder="templates", url_prefix="/data"
+)
 
 
 @data.get("/individuals")
@@ -32,7 +34,9 @@ def get_individuals():
     )
 
     individual_schema = IndividualSchema()
-    results = [individual_schema.dump(individual) for individual in individuals]
+    results = [
+        individual_schema.dump(individual) for individual in individuals
+    ]
 
     return results
 
